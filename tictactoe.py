@@ -37,6 +37,30 @@ def create_grid(event=None):
 
 root = Tk()
 
+def endgame():
+    win = False
+    player = ''
+    for i in range(3):
+        if board[i][0] == board[i][1] == board[i][2]:
+            win = True
+            player = board[i][0]
+        if board[0][i] == board[1][i] == board[2][i]:
+            win = True
+            player = board[0][i]
+        if board[0][0] == board[1][1] == board[2][2]:
+            win = True
+            player = board[0][0]
+        if board[0][2] == board[1][1] == board[2][0]:
+            win = True
+            player = board[0][2]
+    text = Text(root)
+    if win:
+        text.insert(f"player {player} wins !")
+    else:
+        text.insert("it's a null !")
+    text.pack()
+
+
 c = Canvas(root, height=900, width=900, bg='white')
 c.pack(fill=BOTH, expand=True)
 
